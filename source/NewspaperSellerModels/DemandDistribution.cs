@@ -14,6 +14,8 @@ namespace NewspaperSellerModels
         }
         public int Demand { get; set; }
         public List<DayTypeDistribution> DayTypeDistributions { get; set; }
+
+        public int randomNumber;
     }
 }
 

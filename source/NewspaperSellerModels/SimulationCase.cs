@@ -18,5 +18,9 @@ namespace NewspaperSellerModels
         public decimal LostProfit { get; set; }
         public decimal ScrapProfit { get; set; }
         public decimal DailyNetProfit { get; set; }
+
+        public DayTimeDistributionManager dayTimeDistribution;
+
+        public DemandTimeDistirbutionManager demandDistribution;
     }
 }

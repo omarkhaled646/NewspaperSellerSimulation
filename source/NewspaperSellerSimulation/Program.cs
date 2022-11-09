@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NewspaperSellerTesting;
+using NewspaperSellerModels;
 
 namespace NewspaperSellerSimulation
 {
@@ -18,6 +19,16 @@ namespace NewspaperSellerSimulation
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            string TestName = "TestCase1";
+
+            SimulationSystem system = new SimulationSystem();
+            InputParser input = new InputParser(TestName + ".txt", system);
+
+
+            
+
+           
         }
     }
 }

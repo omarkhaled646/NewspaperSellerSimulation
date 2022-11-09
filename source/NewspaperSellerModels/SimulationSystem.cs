@@ -25,6 +25,10 @@ namespace NewspaperSellerModels
         public List<DayTypeDistribution> DayTypeDistributions { get; set; }
         public List<DemandDistribution> DemandDistributions { get; set; }
 
+        public DayTimeDistributionManager dayTimeManager;
+
+        public DemandTimeDistirbutionManager demandManager;
+
         ///////////// OUTPUTS /////////////
         public List<SimulationCase> SimulationTable { get; set; }
         public PerformanceMeasures PerformanceMeasures { get; set; }
