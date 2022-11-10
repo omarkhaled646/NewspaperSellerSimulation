@@ -8,10 +8,15 @@ namespace NewspaperSellerModels
 {
     public class InputParser
     {
-
+        //public SimulationSystem simulationSystem;
         public InputParser(string testCase , SimulationSystem system)
         {
+            //Omar's path
             string path = "E:/Fcis/4th Year Fcis/7th semester/Modeling & Simulation/NewspaperSellerSimulation/source/NewspaperSellerSimulation/TestCases/" + testCase;
+            
+            //Aml's path
+            //string path = "C:/Users/DELL/source/repos/NewspaperSellerSimulation/source/NewspaperSellerSimulation/TestCases/" + testCase;
+            
             string[] lines = System.IO.File.ReadAllLines(path);
             int cursor = 0;
 
@@ -30,6 +35,8 @@ namespace NewspaperSellerModels
             cursor += 3;
             system.SellingPrice = decimal.Parse(lines[cursor]);
 
+            system.UnitProfit = system.SellingPrice - system.PurchasePrice;
+
             cursor += 3;
             List<DayTypeDistribution> dayTypeDistributions = new List<DayTypeDistribution>();
             dayTypeDistributions = parseDayTypeDistribution(lines, ref cursor);
@@ -41,6 +48,8 @@ namespace NewspaperSellerModels
             demandDistributions = parseDemandDistribution(lines, ref cursor);
             system.DemandDistributions = demandDistributions;
 
+            system.StartSimulation();
+            //simulationSystem = system;
         }
 
         List<DayTypeDistribution> parseDayTypeDistribution(string[] lines, ref int cursor, bool isDemandDistribution = false)
@@ -79,7 +88,6 @@ namespace NewspaperSellerModels
         {
             List<DemandDistribution> demandDistributions = new List<DemandDistribution>();
             
-
             while(cursor < lines.Length && lines[cursor] != "")
             {
                 lines[cursor].Replace(" ", String.Empty);
@@ -94,10 +102,7 @@ namespace NewspaperSellerModels
                 demandDistributions.Add(d);
 
                 cursor++;
-
             }
-
-
             return demandDistributions;
         }
     }

@@ -33,7 +33,6 @@ namespace NewspaperSellerModels
             DemandDistribution entry = null;
             int indexOfDayType = (int)type;
 
-
             for (int row = 0; row < distributionTable.Count(); row++)
             {
                 if (randomNumber >= distributionTable[row].DayTypeDistributions[indexOfDayType].MinRange && randomNumber <= distributionTable[row].DayTypeDistributions[indexOfDayType].MaxRange)
@@ -51,7 +50,6 @@ namespace NewspaperSellerModels
         {
             decimal cummProb = 0;
             int max , min = 1;
-
 
             for (int i = 0; i < distributionTable.Count(); i++)
             {
