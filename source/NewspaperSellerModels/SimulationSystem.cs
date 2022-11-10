@@ -26,7 +26,7 @@ namespace NewspaperSellerModels
         public List<DayTypeDistribution> DayTypeDistributions { get; set; }
         public List<DemandDistribution> DemandDistributions { get; set; }
 
-        public DayTimeDistributionManager dayTimeManager;
+        public DayTimeDistributionManager dayTypeManager;
         public DemandTimeDistirbutionManager demandManager;
         ///////////// OUTPUTS /////////////
         public List<SimulationCase> SimulationTable { get; set; }
@@ -43,45 +43,42 @@ namespace NewspaperSellerModels
             int daysWithUnsoldPapersNum = 0;
 
 
-            SimulationCase simulationCase = new SimulationCase();
-            dayTimeManager = new DayTimeDistributionManager(DayTypeDistributions);
+           
+            PerformanceMeasures = new PerformanceMeasures();
+            dayTypeManager = new DayTimeDistributionManager(DayTypeDistributions);
             demandManager = new DemandTimeDistirbutionManager(DemandDistributions);
+
+            SimulationCase.dayTypeDistributionManager = dayTypeManager;
+            SimulationCase.demandDistributionManager = demandManager;
 
             for (int i = 0; i < NumOfRecords; i++)
             {
-                simulationCase.DayNo = i + 1;
-
-                DayTypeDistribution dayTypeDistribution = dayTimeManager.getRandomType();
-                simulationCase.RandomNewsDayType = dayTypeDistribution.randomNumber;
-                simulationCase.NewsDayType = dayTypeDistribution.DayType;
-
-                DemandDistribution demandDistribution = demandManager.getRandomDemand(dayTypeDistribution.DayType);
-                simulationCase.RandomDemand = demandDistribution.randomNumber;
-                simulationCase.Demand = demandDistribution.Demand;
-
-                simulationCase.DailyCost = NumOfNewspapers * PurchasePrice;
+                SimulationCase simulationCase = new SimulationCase(i + 1)
+                {
+                    DailyCost = NumOfNewspapers * PurchasePrice
+                };
                 totalCost += simulationCase.DailyCost;
 
 
-                if (demandDistribution.Demand >= NumOfNewspapers)
+                if (simulationCase.Demand >= NumOfNewspapers)
                 {
-                    if(demandDistribution.Demand != NumOfNewspapers)
+                    if(simulationCase.Demand != NumOfNewspapers)
                     {
                         daysWithMoreDemandNum++;
                     }
                     simulationCase.SalesProfit = NumOfNewspapers * SellingPrice;
                     totalSalesProfit += simulationCase.SalesProfit;
-                    simulationCase.LostProfit = (demandDistribution.Demand - NumOfNewspapers) * UnitProfit;
+                    simulationCase.LostProfit = (simulationCase.Demand - NumOfNewspapers) * UnitProfit;
                     totalLostProfit += simulationCase.LostProfit;
                     simulationCase.ScrapProfit = 0;
                 }
                 else
                 {
                     daysWithUnsoldPapersNum++;
-                    simulationCase.SalesProfit = demandDistribution.Demand * SellingPrice;
+                    simulationCase.SalesProfit = simulationCase.Demand * SellingPrice;
                     totalSalesProfit += simulationCase.SalesProfit;
                     simulationCase.LostProfit = 0;
-                    simulationCase.ScrapProfit = (NumOfNewspapers - demandDistribution.Demand) * ScrapPrice;
+                    simulationCase.ScrapProfit = (NumOfNewspapers - simulationCase.Demand) * ScrapPrice;
                     totalScrapProfit += simulationCase.ScrapProfit;
                 }
                 simulationCase.DailyNetProfit = simulationCase.SalesProfit - simulationCase.DailyCost - simulationCase.LostProfit + simulationCase.ScrapProfit;
@@ -97,6 +94,8 @@ namespace NewspaperSellerModels
             PerformanceMeasures.TotalNetProfit = totalNetProfit;
             PerformanceMeasures.DaysWithMoreDemand = daysWithMoreDemandNum;
             PerformanceMeasures.DaysWithUnsoldPapers = daysWithUnsoldPapersNum;
+
+           
         }
     }
     }

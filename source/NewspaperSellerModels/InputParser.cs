@@ -48,8 +48,8 @@ namespace NewspaperSellerModels
             demandDistributions = parseDemandDistribution(lines, ref cursor);
             system.DemandDistributions = demandDistributions;
 
-            system.StartSimulation();
-            //simulationSystem = system;
+           
+         
         }
 
         List<DayTypeDistribution> parseDayTypeDistribution(string[] lines, ref int cursor, bool isDemandDistribution = false)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using NewspaperSellerTesting;
+using NewspaperSellerTesting;
 using NewspaperSellerModels;
 
 namespace NewspaperSellerSimulation
@@ -24,8 +24,11 @@ namespace NewspaperSellerSimulation
 
             SimulationSystem system = new SimulationSystem();
             InputParser input = new InputParser(TestName + ".txt", system);
-            //system = input.simulationSystem;
 
+            system.StartSimulation();
+        
+            string result = TestingManager.Test(system, Constants.FileNames.TestCase1);
+            MessageBox.Show(result);
            
         }
     }

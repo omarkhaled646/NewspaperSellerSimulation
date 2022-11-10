@@ -19,10 +19,27 @@ namespace NewspaperSellerModels
         public decimal ScrapProfit { get; set; }
         public decimal DailyNetProfit { get; set; }
 
-        //public DayTimeDistributionManager dayTimeDistribution;
+        public static DayTimeDistributionManager dayTypeDistributionManager;
 
-        //public DemandTimeDistirbutionManager demandDistribution;
+        public static DemandTimeDistirbutionManager demandDistributionManager;
 
+        public SimulationCase()
+        {
+           
+        }
+
+       public SimulationCase(int dayNumber)
+        {
+            this.DayNo = dayNumber;
+
+            DayTypeDistribution dayTypeDistribution = dayTypeDistributionManager.getRandomType();
+            this.RandomNewsDayType = dayTypeDistribution.randomNumber;
+            this.NewsDayType = dayTypeDistribution.DayType;
+
+            DemandDistribution demandDistribution = demandDistributionManager.getRandomDemand(dayTypeDistribution.DayType);
+            this.RandomDemand = demandDistribution.randomNumber;
+            this.Demand = demandDistribution.Demand;
+        }
 
     }
 }

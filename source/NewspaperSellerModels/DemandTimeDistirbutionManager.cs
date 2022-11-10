@@ -66,10 +66,15 @@ namespace NewspaperSellerModels
                     else
                     {
                         cummProb += distributionTable[i].DayTypeDistributions[j].Probability + distributionTable[i - 1].DayTypeDistributions[j].CummProbability;
+                        if (cummProb > 1)
+                            cummProb = 1;
                         distributionTable[i].DayTypeDistributions[j].CummProbability = cummProb;
                         max = (int)(100 * cummProb);
-                        distributionTable[i].DayTypeDistributions[j].MinRange = min + distributionTable[i].DayTypeDistributions[j].MaxRange;
-                        distributionTable[i].DayTypeDistributions[j].MaxRange = max;
+                        if (distributionTable[i].DayTypeDistributions[j].MaxRange != 100)
+                        {
+                            distributionTable[i].DayTypeDistributions[j].MinRange = min + distributionTable[i].DayTypeDistributions[j].MaxRange;
+                            distributionTable[i].DayTypeDistributions[j].MaxRange = max;
+                        }
                     }
 
                     cummProb = 0;
