@@ -18,18 +18,28 @@ namespace NewspaperSellerSimulation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+         
+            Application.Run(new Home());
 
-            string TestName = "TestCase1";
+            /* string TestName = "TestCase1";
 
-            SimulationSystem system = new SimulationSystem();
-            InputParser input = new InputParser(TestName + ".txt", system);
+               SimulationSystem system = new SimulationSystem();
+               InputParser input = new InputParser(TestName + ".txt", system);
 
-            system.StartSimulation();
-        
-            string result = TestingManager.Test(system, Constants.FileNames.TestCase1);
-            MessageBox.Show(result);
-           
+               system.StartSimulation();
+
+               string result = TestingManager.Test(system, Constants.FileNames.TestCase1);
+               MessageBox.Show(result);
+
+               foreach(SimulationCase Case in system.SimulationTable)
+               {
+                   Console.WriteLine(Case.RandomDemand);
+                   Console.WriteLine(Case.RandomNewsDayType);
+                   Console.WriteLine(Case.SalesProfit);
+
+               }*/
+
+            return;
         }
     }
 }

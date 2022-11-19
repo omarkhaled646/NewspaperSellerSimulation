@@ -9,18 +9,18 @@ namespace NewspaperSellerModels
     public class DayTimeDistributionManager
     {
         public List<DayTypeDistribution> distributionTable;
-        public Random random;
+        public Random randomDayTime;
 
         public DayTimeDistributionManager(List<DayTypeDistribution> entries)
         {
             this.distributionTable = entries;
             completeDistributionTable();
-            random = new Random();
+            randomDayTime = new Random();
         }
 
         public DayTypeDistribution getRandomType()
         {
-            int randomNumber = random.Next(1, 100);
+            int randomNumber = randomDayTime.Next(1, 100);
             DayTypeDistribution entry = mapNumberToEntry(randomNumber);
 
             return entry;
@@ -39,7 +39,7 @@ namespace NewspaperSellerModels
                 }
             }
            
-            entry.randomNumber = randomNumber;
+            entry.randomDayType = randomNumber;
 
             return entry;
         }

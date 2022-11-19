@@ -10,18 +10,18 @@ namespace NewspaperSellerModels
     public class DemandTimeDistirbutionManager
     {
         public List<DemandDistribution> distributionTable;
-        public Random random;
+        public Random randomDemand;
 
         public DemandTimeDistirbutionManager(List<DemandDistribution> entries)
         {
             this.distributionTable = entries;
             completeDistributionTable();
-            random = new Random();
+            randomDemand = new Random();
         }
 
         public DemandDistribution getRandomDemand(Enums.DayType type)
         {
-            int randomNumber = random.Next(1, 100);
+            int randomNumber = randomDemand.Next(1, 100);
             DemandDistribution entry = mapNumberToEntry(randomNumber, type);
 
             return entry;
@@ -41,7 +41,7 @@ namespace NewspaperSellerModels
                     break;
                 }
             }
-            entry.randomNumber = randomNumber;
+            entry.randomDemand = randomNumber;
 
             return entry;
         }

@@ -33,11 +33,11 @@ namespace NewspaperSellerModels
             this.DayNo = dayNumber;
 
             DayTypeDistribution dayTypeDistribution = dayTypeDistributionManager.getRandomType();
-            this.RandomNewsDayType = dayTypeDistribution.randomNumber;
+            this.RandomNewsDayType = dayTypeDistribution.randomDayType;
             this.NewsDayType = dayTypeDistribution.DayType;
 
             DemandDistribution demandDistribution = demandDistributionManager.getRandomDemand(dayTypeDistribution.DayType);
-            this.RandomDemand = demandDistribution.randomNumber;
+            this.RandomDemand = demandDistribution.randomDemand;
             this.Demand = demandDistribution.Demand;
         }
 

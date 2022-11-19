@@ -65,10 +65,11 @@ namespace NewspaperSellerModels
                     if(simulationCase.Demand != NumOfNewspapers)
                     {
                         daysWithMoreDemandNum++;
+                        simulationCase.LostProfit = (simulationCase.Demand - NumOfNewspapers) * UnitProfit;
                     }
                     simulationCase.SalesProfit = NumOfNewspapers * SellingPrice;
                     totalSalesProfit += simulationCase.SalesProfit;
-                    simulationCase.LostProfit = (simulationCase.Demand - NumOfNewspapers) * UnitProfit;
+                   
                     totalLostProfit += simulationCase.LostProfit;
                     simulationCase.ScrapProfit = 0;
                 }

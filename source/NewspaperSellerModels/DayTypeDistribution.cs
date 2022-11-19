@@ -14,6 +14,6 @@ namespace NewspaperSellerModels
         public int MinRange { get; set; }
         public int MaxRange { get; set; }
 
-        public int randomNumber;
+        public int randomDayType;
     }
 }
