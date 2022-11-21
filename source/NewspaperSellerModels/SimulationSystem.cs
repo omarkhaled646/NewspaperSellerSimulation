@@ -41,12 +41,12 @@ namespace NewspaperSellerModels
             decimal totalNetProfit = 0;
             int daysWithMoreDemandNum = 0;
             int daysWithUnsoldPapersNum = 0;
-
+            Random random = new Random(); 
 
            
             PerformanceMeasures = new PerformanceMeasures();
-            dayTypeManager = new DayTimeDistributionManager(DayTypeDistributions);
-            demandManager = new DemandTimeDistirbutionManager(DemandDistributions);
+            dayTypeManager = new DayTimeDistributionManager(DayTypeDistributions, random);
+            demandManager = new DemandTimeDistirbutionManager(DemandDistributions, random);
 
             SimulationCase.dayTypeDistributionManager = dayTypeManager;
             SimulationCase.demandDistributionManager = demandManager;

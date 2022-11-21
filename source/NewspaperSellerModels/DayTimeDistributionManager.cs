@@ -11,11 +11,11 @@ namespace NewspaperSellerModels
         public List<DayTypeDistribution> distributionTable;
         public Random randomDayTime;
 
-        public DayTimeDistributionManager(List<DayTypeDistribution> entries)
+        public DayTimeDistributionManager(List<DayTypeDistribution> entries, Random random)
         {
             this.distributionTable = entries;
             completeDistributionTable();
-            randomDayTime = new Random();
+            randomDayTime = random;
         }
 
         public DayTypeDistribution getRandomType()

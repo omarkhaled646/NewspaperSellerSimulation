@@ -12,11 +12,11 @@ namespace NewspaperSellerModels
         public List<DemandDistribution> distributionTable;
         public Random randomDemand;
 
-        public DemandTimeDistirbutionManager(List<DemandDistribution> entries)
+        public DemandTimeDistirbutionManager(List<DemandDistribution> entries, Random random)
         {
             this.distributionTable = entries;
             completeDistributionTable();
-            randomDemand = new Random();
+            randomDemand = random;
         }
 
         public DemandDistribution getRandomDemand(Enums.DayType type)

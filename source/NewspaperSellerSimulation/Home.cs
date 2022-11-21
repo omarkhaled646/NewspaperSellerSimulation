@@ -30,44 +30,44 @@ namespace NewspaperSellerSimulation
         private void StartSimulation_Click_1(object sender, EventArgs e)
         {
             Testname = comboBox1.SelectedItem.ToString();
-            string result = "";
-            SimulationSystem system = new SimulationSystem();
-            InputParser input = new InputParser(Testname + ".txt", system);
+               string result = "";
+               SimulationSystem system = new SimulationSystem();
+               InputParser input = new InputParser(Testname + ".txt", system);
 
-            system.StartSimulation();
-
-          
-
-            if (Testname == "TestCase1")
-            {
-                result = TestingManager.Test(system, Constants.FileNames.TestCase1);
-            }
-            else if (Testname == "TestCase2")
-            {
-                result = TestingManager.Test(system, Constants.FileNames.TestCase2);
-            }
-            else if (Testname == "TestCase3")
-            {
-                result = TestingManager.Test(system, Constants.FileNames.TestCase3);
-            }
-
-            MessageBox.Show(result);
+               system.StartSimulation();
 
 
-           /* foreach (SimulationCase Case in system.SimulationTable)
-            {
-                Console.WriteLine(Case.RandomDemand);
-                Console.WriteLine(Case.RandomNewsDayType);
-            }*/
+
+               if (Testname == "TestCase1")
+               {
+                   result = TestingManager.Test(system, Constants.FileNames.TestCase1);
+               }
+               else if (Testname == "TestCase2")
+               {
+                   result = TestingManager.Test(system, Constants.FileNames.TestCase2);
+               }
+               else if (Testname == "TestCase3")
+               {
+                   result = TestingManager.Test(system, Constants.FileNames.TestCase3);
+               }
+
+               MessageBox.Show(result);
+
+
+              /* foreach (SimulationCase Case in system.SimulationTable)
+               {
+                   Console.WriteLine(Case.RandomDemand);
+                   Console.WriteLine(Case.RandomNewsDayType);
+               }*/
+
+
+
+               this.Hide();
+               SimulationTableForm s = new SimulationTableForm(system);
+               s.Show();
+
+
             
-
-
-            this.Hide();
-            SimulationTableForm s = new SimulationTableForm(system);
-            s.Show();
-
-
-        
         }
 
        
