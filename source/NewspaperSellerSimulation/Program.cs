@@ -51,7 +51,7 @@ namespace NewspaperSellerSimulation
                    Console.WriteLine(Case.SalesProfit);
 
                }*/
-
+        
             return;
         }
     }
